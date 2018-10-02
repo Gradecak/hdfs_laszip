@@ -16,7 +16,8 @@ class LasZip(bin_path : String){
     hdfs.copyToLocalFile(false,
                          new Path(filepath),
                          new Path(outfile_path))
-    val res = Seq("sh", bin_path, outfile_path, "-o", "decompresed.las").!!
+    val res = Seq(bin_path, outfile_path, "-o", "decompresed.las").!!
+      println(res)
     //TODO decompress file, return decomressed file path
   }
 
