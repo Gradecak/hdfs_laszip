@@ -12,10 +12,10 @@ class LasZip(bin_path : String){
 
 
   def decompress(filepath : String, outfile_path : String){
-    hdfs.copyToLocalFile(true,
+    hdfs.copyToLocalFile(false,
                          new Path(filepath),
                          new Path(outfile_path))
-    //TODO
+    //TODO decompress file, return decomressed file path
   }
 
 
