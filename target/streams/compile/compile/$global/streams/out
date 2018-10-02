@@ -1,4 +1,7 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/marijangradecak/Documents/hdfs_laszip/hdfs_laszip.scala:9:33: not found: type Configuration[0m
-[0m[[0m[31merror[0m] [0m[0m  val hdfs = FileSystem.get(new Configuration())[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/marijangradecak/Documents/hdfs_laszip/hdfs_laszip.scala:6:8: object !! is not a member of package scala.sys.process[0m
+[0m[[0m[31merror[0m] [0m[0mimport sys.process.!![0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/marijangradecak/Documents/hdfs_laszip/hdfs_laszip.scala:19:74: value !! is not a member of Seq[String][0m
+[0m[[0m[31merror[0m] [0m[0m    val res = Seq("sh", bin_path, outfile_path, "-o", "decompresed.las").!![0m
+[0m[[0m[31merror[0m] [0m[0m                                                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m

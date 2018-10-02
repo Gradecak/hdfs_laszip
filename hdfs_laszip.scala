@@ -3,6 +3,7 @@ package com.utils.laszip
 
 import org.apache.hadoop.fs.{FileAlreadyExistsException, FileSystem, FileUtil, Path}
 import org.apache.hadoop.conf.Configuration
+import sys.process._
 
 class LasZip(bin_path : String){
 
@@ -15,6 +16,7 @@ class LasZip(bin_path : String){
     hdfs.copyToLocalFile(false,
                          new Path(filepath),
                          new Path(outfile_path))
+    val res = Seq("sh", bin_path, outfile_path, "-o", "decompresed.las").!!
     //TODO decompress file, return decomressed file path
   }
 
