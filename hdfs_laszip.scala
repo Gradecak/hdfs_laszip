@@ -14,9 +14,11 @@ class LasZip(bin_path : String){
 
   def decompressFolder(folderpath:String){
     val dir = Files.createTempDirectory("laz")
-    hdfs.copyToLocalFile(false,
-                         new Path(folderpath + "/*.*"),
-                         new Path(dir.toString()))
+    Seq("hdfs", "dfs", "-copyToLocal", folderpath, dir.toString).!!
+    // val hdfs_files = hdfs.listFiles(folderpath, false);
+    // hdfs_files.foreach(f => hdfs.copyToLocalFile(false,
+    //                                              f.getPath,
+    //                                              new Path(dir + f.getPath.getName)))
 
     val files = dir + "/*.*"
     this.decompress(files, "$HOME/mega.las")
