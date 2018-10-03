@@ -15,7 +15,7 @@ class LasZip(bin_path : String){
   def decompressFolder(folderpath:String){
     val dir = Files.createTempDirectory("laz")
     hdfs.copyToLocalFile(false,
-                         new Path(folderpath + "*.*"),
+                         new Path(folderpath + "/*.*"),
                          new Path(dir.toString()))
 
     val files = dir + "/*.*"
