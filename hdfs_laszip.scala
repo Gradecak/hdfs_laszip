@@ -11,9 +11,23 @@ class LasZip(bin_path : String){
   val hdfs = FileSystem.get(new Configuration())
 
 
+  def decompressFolder(folderpath:String){
+    hdfs.copyToLocalFile(false,
+                     new Path(folderpath),
+                     new Path("./testFolder"))
+  }
 
-  def decompress(filepath : String, outfile_path : String){
-    val t0 = System.nanoTime()
+
+  private[this] def decompress(in:String, out:String){
+    Seq(bin_path, in, "-o", out).!!
+  }
+
+  private[this] def decompressM(in:Seq[String], out:String){
+    val cmd = (bin_path +: in) ++ Seq("-o", out)
+    cmd.!!
+  }
+
+  def decompressFile(filepath : String, outfile_path : String){
     hdfs.copyToLocalFile(false,
                          new Path(filepath),
                          new Path(outfile_path))
@@ -23,11 +37,10 @@ class LasZip(bin_path : String){
     }
     //remove file from local after copying to HDFS
     hdfs.copyFromLocalFile(true,
-                       new Path("./decompressed.las"),
+                           new Path("./decompressed.las"),
                            new Path(outfile_path))
-    val t1 = System.nanoTime()
-    println("decompress time: " + (t1 - t0)/1000000 + "ms")
-    //TODO decompress file, return decomressed file path
+    // println("decompress time: " + (t1 - t0)/1000000 + "ms")
+    outfile_path
   }
 
 

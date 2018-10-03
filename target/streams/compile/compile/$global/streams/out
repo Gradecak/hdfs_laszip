@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/marijangradecak/Documents/hdfs_laszip/hdfs_laszip.scala:24:10: value copyFromLocal is not a member of org.apache.hadoop.fs.FileSystem[0m
-[0m[[0m[31merror[0m] [0m[0m    hdfs.copyFromLocal(true,[0m
-[0m[[0m[31merror[0m] [0m[0m         ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/marijangradecak/Documents/hdfs_laszip/hdfs_laszip.scala:43:5: a pure expression does nothing in statement position; you may be omitting necessary parentheses[0m
+[0m[[0m[33mwarn[0m] [0m[0m    outfile_path[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
