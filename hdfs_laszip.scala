@@ -22,7 +22,7 @@ class LasZip(bin_path : String){
 
 
   private[this] def decompress(in:String, out:String){
-    Seq(bin_path, in, "-o", out).!!
+    Seq(bin_path, "-i", in, "-o", out).!!
   }
 
   private[this] def decompressM(in:Seq[String], out:String){
