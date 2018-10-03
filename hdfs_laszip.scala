@@ -3,6 +3,7 @@ package com.utils.laszip
 
 import org.apache.hadoop.fs.{FileAlreadyExistsException, FileSystem, FileUtil, Path}
 import org.apache.hadoop.conf.Configuration
+import java.nio.file.Files
 import sys.process._
 
 class LasZip(bin_path : String){
@@ -12,9 +13,13 @@ class LasZip(bin_path : String){
 
 
   def decompressFolder(folderpath:String){
+    val dir = Files.createTempDirectory("laz")
     hdfs.copyToLocalFile(false,
-                     new Path(folderpath),
-                     new Path("./testFolder"))
+                         new Path(folderpath + "*.*"),
+                         new Path(dir.toString()))
+
+    val files = dir + "/*.*"
+    this.decompress(files, "$HOME/mega.las")
   }
 
 
