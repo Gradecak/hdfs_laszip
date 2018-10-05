@@ -20,8 +20,25 @@ class LasTools(bin_base_path : String){
 
 
   def mergeTile(tileFolder: String){
-    decompressFolder(tileFolder)
+    println("decompressing Folder")
+    decompressFolderLocal(tileFolder)
+    println("merging Into single las file")
     merge(tmpDir + "/*.las", Some(tileFolder.split('/').last + ".las"));
+    println("cleaning up")
+    cleanupTmp
+  }
+
+  private[this] def cleanupTmp(){
+    Seq("rm", "-rf", tmpDir).!!
+  }
+
+  //similar to decompres Folder except the data is not pushed back up to hdfs
+  def decompressFolderLocal(folderpath: String){
+    new File(tmpDir).mkdirs(); //create temp directory
+    hdfs.copyToLocalFile(false,
+                         new Path(folderpath),
+                         new Path(tmpDir))
+    this.decompress(tmpDir + "/*.laz", None)
   }
 
   def decompressFolder(folderpath:String){
@@ -30,7 +47,9 @@ class LasTools(bin_base_path : String){
     hdfs.copyToLocalFile(false,
                          new Path(folderpath),
                          new Path(tmpDir))
+
     this.decompress(tmpDir, None)
+
     hdfs.copyFromLocalFile(true,
                            new Path(tmpDir),
                            new Path(folderpath))
