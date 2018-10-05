@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.11.6"
 
-mainClass := Some("com.utils.laszip")
+mainClass := Some("com.utils.lastools")
 
 libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-client" % "2.7.1",

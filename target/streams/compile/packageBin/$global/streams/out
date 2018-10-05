@@ -4,8 +4,8 @@
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com[0m
 [0m[[0m[0mdebug[0m] [0m[0m	com/utils[0m
 [0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com/utils[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/utils/laszip[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com/utils/laszip[0m
-[0m[[0m[0mdebug[0m] [0m[0m	com/utils/laszip/LasTools.class[0m
-[0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com/utils/laszip/LasTools.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/utils/lastools[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com/utils/lastools[0m
+[0m[[0m[0mdebug[0m] [0m[0m	com/utils/lastools/LasTools.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/marijangradecak/Documents/hdfs_laszip/target/scala-2.11/classes/com/utils/lastools/LasTools.class[0m
 [0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m

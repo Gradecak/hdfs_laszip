@@ -1,5 +1,5 @@
 //hdfs_laszip.scala
-package com.utils.laszip
+package com.utils.lastools
 
 import org.apache.hadoop.fs.{FileAlreadyExistsException, FileSystem, FileUtil, Path}
 import org.apache.hadoop.conf.Configuration
