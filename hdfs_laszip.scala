@@ -37,7 +37,7 @@ class LasTools(bin_base_path : String){
     new File(tmpDir).mkdirs(); //create temp directory
     hdfs.copyToLocalFile(false,
                          new Path(folderpath),
-                         new Path(tmpDir))
+                         new Path(tmpDir + '/'))
     this.decompress(tmpDir + "/*.laz", None)
   }
 
