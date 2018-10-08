@@ -65,6 +65,7 @@ class LasTools(bin_base_path : String){
   }
 
   private[this] def decompress(in:String, out:Option[String]){
+    println(Seq(laszip, "-i", in))
     out match{
       case Some(o) => Seq(laszip, "-i", in, "-o", o).!!
       case None    => Seq(laszip, "-i", in).!!
