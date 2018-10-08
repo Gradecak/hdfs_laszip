@@ -11,8 +11,7 @@ class LasTools(bin_base_path : String){
 
   //use to read and write from/to hadoop
   val hdfs = FileSystem.get(new Configuration())
-  val homeDir = sys.env("HOME")
-  val tmpDir = homeDir + "/tmp"
+  val home = sys.env("HOME")
 
   //lasTools binaries
   val laszip = bin_base_path + "/laszip"
@@ -21,39 +20,42 @@ class LasTools(bin_base_path : String){
 
   def mergeTile(tileFolder: String){
     println("decompressing Folder")
-    decompressFolderLocal(tileFolder)
+    val dest = decompressFolderLocal(tileFolder)
     println("merging Into single las file")
-    merge(tmpDir + "/*.las", Some(tileFolder.split('/').last + ".las"));
+    println(dest)
+    merge(dest + "/*.las", Some(tileFolder.split('/').last + ".las"));
     println("cleaning up")
-    cleanupTmp
+    cleanupDir(home + '/' + dest);
   }
 
-  private[this] def cleanupTmp(){
-    Seq("rm", "-rf", tmpDir).!!
+  private[this] def cleanupDir(path : String){
+    Seq("rm", "-rf", path).!!
   }
 
   //similar to decompres Folder except the data is not pushed back up to hdfs
-  def decompressFolderLocal(folderpath: String){
-    new File(tmpDir).mkdirs(); //create temp directory
+  def decompressFolderLocal(folderpath: String) : String = {
+    val dest = home + '/' + folderpath.split('/').last
+    println("dest " + dest)
     hdfs.copyToLocalFile(false,
                          new Path(folderpath),
-                         new Path(tmpDir + '/'))
-    this.decompress(tmpDir + "/*.laz", None)
+                         new Path(home))
+    this.decompress(dest + "/*.laz", None)
+    dest
   }
 
-  def decompressFolder(folderpath:String){
+  // def decompressFolder(folderpath:String){
 
-    new File(tmpDir).mkdirs(); //create temp directory
-    hdfs.copyToLocalFile(false,
-                         new Path(folderpath),
-                         new Path(tmpDir))
+  //   new File(tmpDir).mkdirs(); //create temp directory
+  //   hdfs.copyToLocalFile(false,
+  //                        new Path(folderpath),
+  //                        new Path(tmpDir))
 
-    this.decompress(tmpDir, None)
+  //   this.decompress(tmpDir, None)
 
-    hdfs.copyFromLocalFile(true,
-                           new Path(tmpDir),
-                           new Path(folderpath))
-  }
+  //   hdfs.copyFromLocalFile(true,
+  //                          new Path(tmpDir),
+  //                          new Path(folderpath))
+  // }
 
   private[this] def merge(in:String, out:Option[String]){
     out match{
